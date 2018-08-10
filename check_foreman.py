@@ -3,7 +3,6 @@
 
 import sys
 import json
-import ssl
 from time import sleep
 from argparse import ArgumentParser
 try:
