@@ -20,6 +20,13 @@ args = parser.parse_args()
 def results():
 
     global total_hosts
+    global bad_hosts
+    global active_hosts
+    global ok_hosts
+    global out_of_sync_hosts
+    global disabled_hosts
+    global reports_missing
+    global percentage
 
     tries = 5
 
@@ -32,6 +39,13 @@ def results():
             print(data)
             if data:
                 total_hosts = data['total_hosts']
+                bad_hosts = data['bad_hosts']
+                active_hosts = data['active_hosts']
+                ok_hosts = data['ok_hosts']
+                out_of_sync_hosts = data['out_of_sync_hosts']
+                disabled_hosts = data['disabled_hosts']
+                reports_missing = data['reports_missing']
+                percentage = data['percentage']
                 break
             else:
                 sleep(15)
@@ -47,11 +61,18 @@ try:
 
     results()
 
-    print()
+    graphite = ' | ' + 'total_hosts=' + str(total_hosts) + ' bad_hosts=' + str(bad_hosts) + ' active_hosts=' + str(active_hosts)
+            + ' ok_hosts=' + str(ok_hosts) + ' out_of_sync_hosts=' + str(out_of_sync_hosts) + ' disabled_hosts=' + str(disabled_hosts)
+            + ' reports_missing=' + str(reports_missing) + ' percentage=' + str(percentage)
 
-    if averagehashrate > 1 :
+    if bad_hosts > 1 :
+        print()
         sys.exit(2)
+    elif out_of_sync_hosts > 1 :
+        print()
+        sys.exit(1)
     else:
+        print()
         sys.exit(0)
 
 except Exception as e:
