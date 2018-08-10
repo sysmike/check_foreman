@@ -14,7 +14,7 @@ parser.add_argument('-U', '--user', dest='username', metavar='USERNAME', require
 parser.add_argument('-P', '--password', dest='password', metavar='PASSWORD', required=True, help="foreman password")
 args = parser.parse_args()
 
-def get_stats():
+def results():
 
     global total_hosts
 
@@ -42,13 +42,9 @@ def get_stats():
 
 try:
 
-    get_stats()
+    results()
 
-    print('Your mining rigs are running at ' + str(hashrate) + 'MH/s and you are making ' + str(usdpermin) + '$ a day | '
-            + 'reported_hashrate=' + str(reported_hashrate) + ' averagehashrate=' + str(averagehashrate) + ' hashrate=' + 
-str(hashrate)
-            + ' validshares=' + str(validshares) + ' invalidshares=' + str(invalidshares) + ' staleshares=' + str(staleshares)
-            + ' active_workers=' + str(active_workers) + ' unpaid=' + str(unpaid))
+    print()
 
     if averagehashrate < 50:
         sys.exit(2)
