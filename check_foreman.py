@@ -71,7 +71,7 @@ try:
         print('WARNING - Foreman is reporting ' + str(out_of_sync_hosts) + ' of your hosts out of sync' + graphite)
         sys.exit(1)
     else:
-        print('OK - ' + str(bad_hosts) + ' Foreman is reporting no errors' + graphite)
+        print('OK - Foreman is reporting no errors' + graphite)
         sys.exit(0)
 
 except Exception as e:
