@@ -46,13 +46,11 @@ def results():
                 reports_missing = data['reports_missing']
                 percentage = data['percentage']
                 break
-            else:
-                sleep(15)
         except:
             if tries == 0:
                 raise
             else:
-                sleep(10)
+                sleep(15)
                 tries -= 1
                 continue
 
